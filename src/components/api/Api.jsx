@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import Card from "../card/Card";
 
 const Api = () => {
-    let [api,setAis]=useState([])
+  let [api, setAis] = useState([]);
 
-    useEffect(()=>{
+  useEffect(() => {
+    fetch("https://random-data-api.com/api/v2/appliances")
+      .then((res) => res.json())
+      .then((data) => setAis(data));
+  }, []);
 
-        fetch("https://random-data-api.com/api/v2/appliances")
-        .then(res=>res.json())
-        .then((data)=>console.log(data))
+  return (
+    <div>
+      <Card
+      api={api}
 
-    },[])
-    return (
-        <div>
-            
-        </div>
-    );
+      ></Card>
+    </div>
+  );
 };
 
 export default Api;
